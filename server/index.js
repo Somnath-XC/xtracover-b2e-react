@@ -58,10 +58,11 @@ app.get('/api/health', (req, res) => {
     timestamp: new Date().toISOString(),
     dbReady: dbInitialized,
     envVarsPresent: {
-      DB_SERVER: !!process.env.DB_SERVER,
+      SQL_SERVER_HOST: !!process.env.SQL_SERVER_HOST,
+      SQL_SERVER_USER: !!process.env.SQL_SERVER_USER,
+      SQL_SERVER_PASSWORD: !!process.env.SQL_SERVER_PASSWORD,
+      SQL_SERVER_PORT: !!process.env.SQL_SERVER_PORT,
       DB_NAME: !!process.env.DB_NAME,
-      DB_USER: !!process.env.DB_USER,
-      DB_PASSWORD: !!process.env.DB_PASSWORD,
       JWT_SECRET: !!process.env.JWT_SECRET,
       SMTP_HOST: !!process.env.SMTP_HOST,
       NOTIFICATION_RECIPIENT_EMAIL: !!process.env.NOTIFICATION_RECIPIENT_EMAIL

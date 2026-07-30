@@ -4,14 +4,14 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 const dbConfig = {
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  server: process.env.DB_SERVER,
-  port: parseInt(process.env.DB_PORT || '1433', 10),
+  user: process.env.SQL_SERVER_USER,
+  password: process.env.SQL_SERVER_PASSWORD,
+  server: process.env.SQL_SERVER_HOST,
+  port: parseInt(process.env.SQL_SERVER_PORT || '1433', 10),
   database: process.env.DB_NAME,
   options: {
-    encrypt: true, // Required for AWS RDS MSSQL connection
-    trustServerCertificate: true, // Bypasses self-signed certificate issues on cloud RDS
+    encrypt: false, // Off for on-premise / private IP server
+    trustServerCertificate: true,
     connectTimeout: 30000,
     requestTimeout: 30000
   },
@@ -26,11 +26,11 @@ let poolPromise = null
 
 export async function getDbPool() {
   if (!poolPromise) {
-    console.log(`Connecting to Microsoft SQL Server RDS at ${dbConfig.server}:${dbConfig.port}...`)
+    console.log(`Connecting to SQL Server at ${dbConfig.server}:${dbConfig.port}...`)
     poolPromise = new mssql.ConnectionPool(dbConfig)
       .connect()
       .then((pool) => {
-        console.log(`Connected successfully to MSSQL database "${dbConfig.database}".`)
+        console.log(`Connected successfully to database "${dbConfig.database}".`)
         return pool
       })
       .catch((err) => {
