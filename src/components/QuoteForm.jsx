@@ -2,6 +2,7 @@ import { useState } from 'react'
 import Icon from './Icon'
 import Reveal from './Reveal'
 import SectionHeading from './SectionHeading'
+import { apiSubmitQuote } from '../services/apiService'
 
 const initialForm = {
   name: '',
@@ -17,6 +18,7 @@ const fields = [
 
 export default function QuoteForm() {
   const [submitted, setSubmitted] = useState(false)
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState(initialForm)
 
   function updateField(event) {
@@ -25,10 +27,20 @@ export default function QuoteForm() {
     setSubmitted(false)
   }
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault()
-    setSubmitted(true)
-    setFormData(initialForm)
+    setLoading(true)
+
+    try {
+      // Submit quote request to MSSQL backend API
+      await apiSubmitQuote(formData)
+      setSubmitted(true)
+      setFormData(initialForm)
+    } catch (err) {
+      alert(err.message || 'Failed to record quote request in database. Please try again.')
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -105,9 +117,10 @@ export default function QuoteForm() {
 
             <button
               type="submit"
-              className="mt-5 inline-flex min-h-[50px] w-full items-center justify-center rounded-lg bg-brand-600 px-6 text-sm font-bold text-white shadow-lg shadow-brand-600/20 transition hover:-translate-y-0.5 hover:bg-brand-700"
+              disabled={loading}
+              className="mt-5 inline-flex min-h-[50px] w-full items-center justify-center rounded-lg bg-brand-600 px-6 text-sm font-bold text-white shadow-lg shadow-brand-600/20 transition hover:-translate-y-0.5 hover:bg-brand-700 disabled:opacity-50"
             >
-              Get Business Quote
+              {loading ? 'Submitting...' : 'Get Business Quote'}
             </button>
 
             <p className="mt-3 text-center text-[10px] text-slate-400">
