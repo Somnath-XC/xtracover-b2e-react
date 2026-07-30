@@ -14,6 +14,21 @@ const PORT = process.env.PORT || 5000
 app.use(cors())
 app.use(express.json())
 
+// Lazy DB initialization - runs once per serverless instance warm start
+let dbInitialized = false
+app.use(async (req, res, next) => {
+  if (!dbInitialized) {
+    try {
+      await initializeDatabaseSchema()
+      dbInitialized = true
+    } catch (err) {
+      console.error('DB initialization error:', err)
+      // Still continue - some routes may not need DB
+    }
+  }
+  next()
+})
+
 // API Routes
 app.use('/api/admin', authRoutes)
 app.use('/api/quotes', quoteRoutes)
@@ -27,19 +42,15 @@ app.get('/api/health', (req, res) => {
   })
 })
 
-// Initialize DB schema & Start Server
-async function startServer() {
-  try {
-    await initializeDatabaseSchema()
-    app.listen(PORT, () => {
-      console.log(`=================================================`)
-      console.log(`XtraCover Backend Server running on port ${PORT}`)
-      console.log(`Microsoft SQL Server Database Connected.`)
-      console.log(`=================================================`)
-    })
-  } catch (err) {
-    console.error('Failed to start server due to database initialization error:', err)
-  }
-}
+// Export app as default for Vercel serverless functions
+export default app
 
-startServer()
+// Start local server only when running directly (not on Vercel)
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`=================================================`)
+    console.log(`XtraCover Backend Server running on port ${PORT}`)
+    console.log(`Microsoft SQL Server Database Connected.`)
+    console.log(`=================================================`)
+  })
+}
