@@ -11,41 +11,76 @@ const app = express()
 const PORT = process.env.PORT || 5000
 
 // Middleware
-app.use(cors())
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}))
 app.use(express.json())
 
-// Lazy DB initialization - runs once per serverless instance warm start
+// Handle CORS preflight
+app.options('*', (req, res) => {
+  res.status(200).end()
+})
+
+// Lazy DB initialization — runs once per warm serverless instance
 let dbInitialized = false
-app.use(async (req, res, next) => {
-  if (!dbInitialized) {
-    try {
-      await initializeDatabaseSchema()
-      dbInitialized = true
-    } catch (err) {
-      console.error('DB initialization error:', err)
-      // Still continue - some routes may not need DB
-    }
+let dbInitError = null
+
+async function ensureDbReady() {
+  if (dbInitialized) return
+  if (dbInitError) throw dbInitError
+  try {
+    await initializeDatabaseSchema()
+    dbInitialized = true
+  } catch (err) {
+    dbInitError = err
+    throw err
   }
-  next()
+}
+
+app.use(async (req, res, next) => {
+  try {
+    await ensureDbReady()
+    next()
+  } catch (err) {
+    console.error('DB initialization failed:', err.message)
+    return res.status(503).json({
+      success: false,
+      message: 'Database connection failed. Check environment variables.',
+      detail: err.message
+    })
+  }
 })
 
 // API Routes
 app.use('/api/admin', authRoutes)
 app.use('/api/quotes', quoteRoutes)
 
-// Health Check
+// Health Check (skips DB check for basic connectivity test)
 app.get('/api/health', (req, res) => {
+  const envCheck = {
+    DB_SERVER: !!process.env.DB_SERVER,
+    DB_NAME: !!process.env.DB_NAME,
+    DB_USER: !!process.env.DB_USER,
+    DB_PASSWORD: !!process.env.DB_PASSWORD,
+    JWT_SECRET: !!process.env.JWT_SECRET,
+    SMTP_HOST: !!process.env.SMTP_HOST,
+    NOTIFICATION_RECIPIENT_EMAIL: !!process.env.NOTIFICATION_RECIPIENT_EMAIL
+  }
   res.json({
     status: 'online',
     service: 'XtraCover B2E MSSQL Backend API',
-    timestamp: new Date().toISOString()
+    timestamp: new Date().toISOString(),
+    dbReady: dbInitialized,
+    envVarsPresent: envCheck
   })
 })
 
-// Export app as default for Vercel serverless functions
+// Export app as default for Vercel serverless
 export default app
 
-// Start local server only when running directly (not on Vercel)
+// Start local server only when not running on Vercel
 if (!process.env.VERCEL) {
   app.listen(PORT, () => {
     console.log(`=================================================`)
