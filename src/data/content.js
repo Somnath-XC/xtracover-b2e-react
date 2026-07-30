@@ -4,7 +4,7 @@ export const navItems = [
   ['Warranty', '#warranty'],
   ['Quality Process', '#quality'],
   ['Industries', '#industries'],
-  ['Reviews', '#reviews'],
+  // ['Reviews', '#reviews'],
   ['FAQs', '#faq'],
 ]
 
