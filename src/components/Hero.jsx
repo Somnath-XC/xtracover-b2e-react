@@ -3,7 +3,7 @@ import Reveal from './Reveal'
 
 const proofItems = [
   'Business-grade refurbished laptops',
-  'Rigorous 67-parameter Quality Check ',
+  '67-Parameter Quality Check',
   'QC Certificates and audit logs ',
   'Nationwide Warranty & Service Support You Can Rely On  ',
   'PAN India delivery ',
