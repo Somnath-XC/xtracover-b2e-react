@@ -43,8 +43,7 @@ export default function Solutions() {
             <div>
               <div className="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[.2em] text-brand-600 sm:text-xs">
                 <span className="h-px w-9 bg-brand-500" />
-                <Icon name="shield" className="h-4 w-4" />
-                Complete business device solutions
+                Technology for Every Business Requirement
               </div>
               <h2 className="mt-4 max-w-3xl text-balance text-4xl font-semibold leading-[1.06] tracking-[-.04em] text-brand-950 sm:text-5xl lg:text-[52px]">
                 Start with laptops.<br/> Scale across device categories.

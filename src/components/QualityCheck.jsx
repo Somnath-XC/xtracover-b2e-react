@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import Reveal from './Reveal'
 import { laptopSystemInfo, laptopTests } from '../data/qualityChecks'
-import qcCertificate from "../assets/qc-certificate.pdf"; 
+import laptopImg  from "../assets/laptop-img.png"; 
 
 const laptopInfoCount = Object.values(laptopSystemInfo).reduce((total, items) => total + items.length, 0)
 const automaticLaptopTests = laptopTests.filter((test) => test.type === 'Automatic').length
@@ -84,9 +84,6 @@ export default function QualityCheck() {
               <p>
                 Every single laptop undergoes a rigorous 67-parameter diagnostic inspection powered by XCQC, the quality-check engine trusted by leading OEMs, major brands, and top marketplaces like Flipkart.
               </p>
-              <p>
-                Before dispatch, every device is issued a device-level digital QC certificate, giving your IT team and end-users complete, auditable visibility into battery health, display integrity, ports, thermals, and overall performance.
-              </p>
 
               <div className="qc-marketplace-badge" aria-label="QC software used by Flipkart">
                 <span><ShieldIcon /></span>
@@ -98,13 +95,10 @@ export default function QualityCheck() {
                   Test Parameters
                   <ArrowIcon />
                 </button>
-                <button type="button" className="qc-secondary-action" onClick={() => openDetails('system')}>
-                  System Information Capture
-                  <ArrowIcon />
-                </button>
+                
                 <a
                   className="qc-secondary-action qc-certificate-action"
-                  href={qcCertificate}
+                  href="https://grading.xtracover.com/certificate/b60a3acf-b6e4-4365-b3dc-ee27a94f0aaa"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -122,7 +116,7 @@ export default function QualityCheck() {
               <div className="qc-certificate-topline">
                 <span className="qc-certificate-icon"><ShieldIcon /></span>
                 <div>
-                  <span>Device-level digital certificate</span>
+                  <span>Quality Check certificate</span>
                   <strong>XCQC Quality Report</strong>
                 </div>
                 <em>67 parameters</em>
@@ -130,7 +124,7 @@ export default function QualityCheck() {
 
               <div className="qc-certificate-device">
                 <div className="qc-slick-device-icon" aria-hidden="true">
-                  <LaptopCertificateIcon />
+                  <img src={laptopImg} alt="Laptop Quality verified" />
                   <span className="qc-device-icon-orbit qc-device-icon-orbit-one" />
                   <span className="qc-device-icon-orbit qc-device-icon-orbit-two" />
                 </div>
@@ -335,29 +329,7 @@ function CountPill({ value, label }) {
   )
 }
 
-function LaptopCertificateIcon() {
-  return (
-    <svg viewBox="0 0 180 150" aria-hidden="true">
-      <defs>
-        <linearGradient id="qcLaptopScreen" x1="0" x2="1" y1="0" y2="1">
-          <stop offset="0" stopColor="#eff5ff" />
-          <stop offset="1" stopColor="#d9e7ff" />
-        </linearGradient>
-        <linearGradient id="qcLaptopBase" x1="0" x2="0" y1="0" y2="1">
-          <stop offset="0" stopColor="#d5deec" />
-          <stop offset="1" stopColor="#8999b7" />
-        </linearGradient>
-      </defs>
-      <rect x="28" y="20" width="124" height="82" rx="12" fill="#13254b" />
-      <rect x="36" y="28" width="108" height="64" rx="6" fill="url(#qcLaptopScreen)" />
-      <path d="M18 105h144l-8 13c-2 4-7 6-12 6H38c-5 0-10-2-12-6l-8-13Z" fill="url(#qcLaptopBase)" />
-      <path d="M68 112h44" stroke="#637495" strokeLinecap="round" strokeWidth="4" opacity=".55" />
-      <circle cx="90" cy="60" r="20" fill="#254696" />
-      <path d="m80 60 7 7 14-15" fill="none" stroke="#fff" strokeLinecap="round" strokeLinejoin="round" strokeWidth="5" />
-      <path d="M126 34h10M126 42h10" stroke="#8da6d6" strokeLinecap="round" strokeWidth="3" />
-    </svg>
-  )
-}
+
 
 function BatteryIcon() {
   return (

@@ -19,7 +19,7 @@ const supportSteps = [
   },
   {
     number: '04',
-    title: 'Request Closure',
+    title: 'Ticket Closure',
     text: 'The resolution and relevant service details are recorded for future reference.',
   },
 ]
@@ -37,7 +37,6 @@ export default function Warranty() {
               </div>
               <h2 className="mt-4 max-w-5xl text-balance text-4xl leading-[1.05] text-white sm:text-5xl lg:text-[52px]">
                 <span className="block">Nationwide Warranty &amp; Service Support</span>
-                <span className="block">You Can Rely On</span>
               </h2>
             </div>
           </Reveal>
@@ -69,16 +68,11 @@ export default function Warranty() {
                 <div>
                   <p className="text-[10px] font-semibold uppercase tracking-[.2em] text-cyan-300">Support Process</p>
                   <h3 className="mt-2 max-w-2xl text-2xl leading-tight text-white sm:text-3xl lg:text-[34px]">
-                    A clear process from request to resolution
+                    Warranty Support Process
                   </h3>
                 </div>
 
-                <a
-                  href="#quote"
-                  className="inline-flex min-h-[48px] w-fit items-center gap-2 rounded-xl bg-white px-5 text-sm font-semibold text-brand-800 shadow-lg shadow-black/10 transition duration-300 hover:-translate-y-0.5 hover:bg-blue-50"
-                >
-                  Discuss Warranty Coverage <Icon name="arrow" className="h-4 w-4" />
-                </a>
+                
               </div>
 
               <ol className="support-process-grid grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -91,22 +85,20 @@ export default function Warranty() {
                       <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-emerald-300 text-xs font-semibold text-[#071a3d] shadow-[0_12px_26px_rgba(110,231,183,.18)]">
                         {step.number}
                       </span>
-                      <span className="text-right text-[9px] font-medium uppercase tracking-[.12em] text-blue-100/35">Warranty support</span>
+                      
                     </div>
                     <h4 className="mt-4 text-[15px] leading-5 text-white">{step.title}</h4>
                     <p className="mt-2 text-xs leading-5 text-blue-100/65">{step.text}</p>
                   </li>
                 ))}
               </ol>
-
-              <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-[#061735]/70 px-4 py-3">
-                <span className="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-cyan-300/10 text-cyan-300">
-                  <Icon name="shield" className="h-4 w-4" />
-                </span>
-                <p className="text-xs leading-5 text-blue-100/60">
-                  Coverage and turnaround depend on the device category, service location, reported issue and applicable warranty terms.
-                </p>
-              </div>
+              <a
+                  href="#quote"
+                  className="inline-flex min-h-[48px] w-fit items-center gap-2 rounded-xl bg-white px-5 text-sm font-semibold text-brand-800 shadow-lg shadow-black/10 transition duration-300 hover:-translate-y-0.5 hover:bg-blue-50"
+                >
+                  Discuss Warranty Coverage <Icon name="arrow" className="h-4 w-4" />
+                </a>
+              
             </div>
           </div>
         </Reveal>

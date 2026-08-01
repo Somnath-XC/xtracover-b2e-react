@@ -63,7 +63,7 @@ export default function Header() {
             ))}
           </nav>
 
-          <a href="#quote" className="ml-2 hidden rounded-xl bg-brand-600 px-5 py-2.5 text-xs font-semibold text-white shadow-lg shadow-brand-600/20 transition duration-300 hover:-translate-y-0.5 hover:bg-brand-700 hover:shadow-xl xl:inline-flex">Get Bulk Quote</a>
+          <a href="#quote" className="ml-2 hidden rounded-xl bg-brand-600 px-5 py-2.5 text-xs font-semibold text-white shadow-lg shadow-brand-600/20 transition duration-300 hover:-translate-y-0.5 hover:bg-brand-700 hover:shadow-xl xl:inline-flex">Get Quote</a>
 
           <button
             type="button"
@@ -105,7 +105,7 @@ export default function Header() {
                 style={{ '--menu-delay': `${navItems.length * 45}ms` }}
                 tabIndex={open ? 0 : -1}
               >
-                Get Bulk Quote
+                Get Quote
               </a>
             </div>
           </nav>

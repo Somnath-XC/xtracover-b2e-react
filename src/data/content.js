@@ -1,5 +1,4 @@
 export const navItems = [
-  ['About', '#about'],
   ['Solutions', '#solutions'],
   ['Warranty', '#warranty'],
   ['Quality Process', '#quality'],
@@ -8,28 +7,73 @@ export const navItems = [
   ['FAQs', '#faq'],
 ]
 
-export const aboutCards = [
-  { icon: 'laptop', title: 'Optimize Procurement Budgets ', text: 'Cut hardware acquisition costs significantly without overspending on brand-new machines.' },
-  { icon: 'monitor', title: 'Guaranteed Device Performance ', text: 'Every unit undergoes rigorous, multi-point functional and hardware testing. Get full visibility on device conditions and inspection reports. ' },
-  { icon: 'check', title: 'Enterprise Warranty Support ', text: 'Risk-free procurement backed by warranty coverage and structured post-purchase assistance.' },
-  ]
+import optimizeProcurementBudget from "../assets/optimize-procurement-budgets.jpg";
+import guaranteedDevicePerformance from "../assets/guaranteed-device-performance.jpg";
+import enterpriseWarrantySupport from "../assets/enterprise-warranty-support.jpg";
 
-export const benefits = [
-  ['Share Your Requirement', 'Tell us the required quantity, preferred configuration, employee use case, budget and delivery locations. '],
-  ['Receive Device Recommendations', 'Our business team identifies suitable brands, models and configurations based on operational requirements and current availability. '],
-  ['Review the Commercial Proposal', 'Receive device specifications, pricing, warranty details and expected delivery timelines.'],
-  ['Quality Check', 'Selected laptops are tested, securely reset, professionally cleaned and prepared before dispatch. '],
-  ['Delivery and Post-Purchase Support', 'Devices are delivered to the agreed location, with warranty and business support available after purchase. '],
-]
+export const aboutCards = [
+  {
+    image: optimizeProcurementBudget,
+    title: "Optimize Procurement Budgets",
+    text: "Cut hardware acquisition costs significantly without overspending on brand-new machines.",
+  },
+  {
+    image: guaranteedDevicePerformance,
+    title: "Guaranteed Device Performance",
+    text: "Every unit undergoes rigorous, multi-point functional and hardware testing. Get full visibility on device conditions and inspection reports.",
+  },
+  {
+    image: enterpriseWarrantySupport,
+    title: "Enterprise Warranty Support",
+    text: "Risk-free procurement backed by warranty coverage and structured post-purchase assistance.",
+  },
+];
+
+
+import itCompanies from "../assets/it-companies.jpg";
+import education from "../assets/education.jpg";
+import sharedServices from "../assets/bpo.jpg";
+import Startups from "../assets/startups.jpg";
+import Manufacturing from "../assets/manufacturing.jpg";
+import Government from "../assets/government.jpg";
+
 
 export const industries = [
-  ['IT Companies', 'Employee onboarding, developers, project teams, support operations and remote work.'],
-  ['Education', 'Computer labs, teachers, administration, digital learning and training programs.'],
-  ['BPO & Shared Services', 'High-volume laptop and desktop deployment for operational teams.'],
-  ['Startups', 'Flexible device procurement for growing teams without heavy upfront investment.'],
-  ['Manufacturing', 'Plant offices, field teams, supervisors, quality teams and back-office functions.'],
-  ['Government & NGOs', 'Budget-conscious procurement for offices, institutions, programs and field projects.'],
-]
+  {
+    title: 'IT Companies',
+    description: 'Employee onboarding, developers, project teams, support operations and remote work.',
+    image: itCompanies,
+  },
+  {
+    title: 'Education',
+    description: 'Computer labs, teachers, administration, digital learning and training programs.',
+    image: education,
+
+  },
+  {
+    title: 'BPO & Shared Services',
+    description: 'High-volume laptop and desktop deployment for operational teams.',
+    image: sharedServices,
+
+  },
+  {
+    title: 'Startups',
+    description: 'Flexible device procurement for growing teams without heavy upfront investment.',
+    image: Startups,
+
+  },
+  {
+    title: 'Manufacturing',
+    description: 'Plant offices, field teams, supervisors, quality teams and back-office functions.',
+    image: Manufacturing,
+  },
+  {
+    title: 'Government & NGOs',
+    description: 'Budget-conscious procurement for offices, institutions, programs and field projects.',
+    image: Government,
+
+  },
+];
 
 export const configs = [
   { tier: 'Essential', title: 'Routine Office Work', processor: 'Intel Core i3', spec: '8GB RAM · SSD storage', points: ['Emails and documentation', 'Browser-based business tools', 'Budget-friendly deployment'] },
@@ -51,5 +95,5 @@ export const faqs = [
   ['Can devices be delivered to multiple locations? ', 'Multi-location delivery requirements can be discussed with the business team. Delivery is subject to location serviceability, quantity and commercial terms. '],
   ['Can you recommend laptops based on employee roles? ', 'Yes. Share the applications, workloads and usage requirements for each team. Suitable configurations can be recommended based on budget and availability. '],
   ['How can a business raise a warranty request? ', 'A warranty request can be raised with the support team by sharing the device details, order information and reported issue. The request will be assessed according to the applicable warranty terms.'],
-  ]
+]
 

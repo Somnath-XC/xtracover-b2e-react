@@ -2,10 +2,10 @@ import Icon from './Icon'
 import Reveal from './Reveal'
 
 const steps = [
-  ['Share Your Requirement', 'Tell us the required quantity, preferred configuration, employee use case, budget and delivery locations. '],
-  ['Receive Device Recommendations', 'Our business team identifies suitable brands, models and configurations based on operational requirements and current availability. '],
-  ['Review the Commercial Proposal', 'Receive device specifications, pricing, warranty details and expected delivery timelines. '],
-  ['Delivery and Post-Purchase Support', 'Devices are delivered to the agreed location, with warranty and business support available after purchase.'],
+  ['Share Your  Requirement', 'Provide the required quantity, configuration, use case, budget and delivery locations.'],
+  ['Receive Recommendations', 'The business team identifies suitable models and configurations based on your requirements and available inventory.'],
+  ['Review the Proposal', 'Receive device specifications, pricing, warranty details and estimated delivery timelines.'],
+  ['Delivery & Post-Purchase', 'Devices are prepared and delivered to the agreed locations, with post-purchase support available under the applicable terms.'],
 ]
 
 export default function Process() {
@@ -40,7 +40,7 @@ export default function Process() {
               ))}
             </div>
             <a href="#quote" className="inline-flex mt-6 min-h-[50px] shrink-0 items-center gap-2 rounded-xl bg-brand-600 px-6 text-sm font-semibold text-white shadow-lg shadow-brand-600/20 transition duration-300 hover:-translate-y-0.5 hover:bg-brand-700">
-                Start Your Procurement Request <Icon name="arrow" className="h-4 w-4" />
+                Request Quote <Icon name="arrow" className="h-4 w-4" />
             </a>
           </div>
         </Reveal>

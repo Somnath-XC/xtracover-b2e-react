@@ -45,13 +45,12 @@ export default function QuoteForm() {
 
   return (
     <section id="quote" className="quote-bg section-space text-white">
-      <div className="container-site grid items-center gap-12 lg:grid-cols-[.78fr_1.22fr]">
+      <div className="container-site grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
         <Reveal>
           <SectionHeading
             light
             eyebrow="Business enquiry"
-            title="Request a Business Quote"
-            text="Tell us what your organisation needs. Our business team will recommend suitable laptop configurations and commercial options based on current inventory. "
+            title="Request a business quote"
           />
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
             {['Bulk laptop requirements', 'Mixed device enquiries', 'Configuration guidance', 'Delivery coordination', 'Warranty support'].map((item) => (
@@ -68,8 +67,7 @@ export default function QuoteForm() {
         <Reveal delay={90}>
           <form onSubmit={handleSubmit} className="rounded-[28px] bg-white p-6 text-slate-900 shadow-2xl shadow-black/20 md:p-8">
             <div className="mb-6">
-              <p className="text-[10px] font-extrabold uppercase tracking-[0.16em] text-brand-600">Tell us about your requirement</p>
-              <h3 className="mt-1 text-xl font-black text-brand-950">Request a business quote</h3>
+              <h3 className="mt-1 text-xl font-black text-brand-950">Contact Sales</h3>
             </div>
 
             <div className="grid gap-4 sm:grid-cols-2">

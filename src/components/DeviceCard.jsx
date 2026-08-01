@@ -64,7 +64,7 @@ function WarrantyBadge({ className = '' }) {
         <span className="grid h-5 w-5 place-items-center rounded-full bg-emerald-100 text-emerald-700">
           <Icon name="shield" className="h-3.5 w-3.5" />
         </span>
-        Pan India Warranty
+        Pan India Services
       </div>
     </div>
   )

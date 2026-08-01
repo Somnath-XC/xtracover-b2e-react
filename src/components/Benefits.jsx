@@ -9,7 +9,7 @@ export default function Benefits() {
       <div className="container-site grid gap-12 lg:grid-cols-[.75fr_1.25fr] lg:items-center">
         <Reveal>
           <SectionHeading eyebrow="Smarter IT procurement" title="Procurement Process" text="Move from requirement planning to device deployment with ease. " />
-          <a href="#quote" className="mt-7 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.14em] text-brand-600">Request a business quote <Icon name="arrow" className="h-4 w-4" /></a>
+          <a href="#quote" className="mt-7 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.14em] text-brand-600">Contact Sales <Icon name="arrow" className="h-4 w-4" /></a>
         </Reveal>
 
         <div className="overflow-hidden rounded-[30px] border border-blue-100/70 bg-white shadow-[0_25px_65px_rgba(15,35,92,.08)]">
