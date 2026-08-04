@@ -38,6 +38,8 @@ export default function Warranty() {
               <h2 className="mt-4 max-w-5xl text-balance text-4xl leading-[1.05] text-white sm:text-5xl lg:text-[52px]">
                 <span className="block">Nationwide Warranty &amp; Service Support</span>
               </h2>
+              <p className='pt-3'>Every enterprise refurbished laptop is backed by warranty support designed to minimize disruption after deployment.</p>
+              <p className='pb-3'>From initial diagnosis to service coordination and final resolution, businesses get a clear and accountable support process for every covered device.</p>
             </div>
           </Reveal>
         </div>

@@ -53,7 +53,7 @@ export default function QuoteForm() {
             title="Request a business quote"
           />
           <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
-            {['Bulk laptop requirements', 'Mixed device enquiries', 'Configuration guidance', 'Delivery coordination', 'Warranty support'].map((item) => (
+            {['Bulk laptop requirements', 'Configuration guidance', 'PAN-India Warranty' , 'Quality Check Process'].map((item) => (
               <div key={item} className="flex items-center gap-2 text-sm text-blue-100/80">
                 <span className="grid h-6 w-6 place-items-center rounded-full bg-white/10 text-blue-200">
                   <Icon name="check" className="h-3.5 w-3.5" />

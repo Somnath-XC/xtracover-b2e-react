@@ -82,13 +82,10 @@ export default function QualityCheck() {
               </h2>
 
               <p>
-                Every single laptop undergoes a rigorous 67-parameter diagnostic inspection powered by XCQC, the quality-check engine trusted by leading OEMs, major brands, and top marketplaces like Flipkart.
-              </p>
+                Every laptop undergoes a rigorous <strong>67-parameter</strong> inspection powered by <strong>XCQC</strong>, our advanced quality-check platform trusted by leading OEMs such as <strong>Lenovo</strong> and <strong>Acer</strong>, and major marketplaces including <strong>Flipkart</strong> and <strong>Amazon</strong>.</p>
+                <p>Once approved, each laptop is issued a device-level QC certificate, giving procurement and IT teams complete visibility into its tested condition before deployment.</p>
 
-              <div className="qc-marketplace-badge" aria-label="QC software used by Flipkart">
-                <span><ShieldIcon /></span>
-                <span>QC software used by <strong>Flipkart</strong></span>
-              </div>
+             
 
               <div className="qc-verify-actions">
                 <button type="button" className="qc-primary-action" onClick={() => openDetails('tests')}>

@@ -6,24 +6,25 @@ export const navItems = [
   // ['Reviews', '#reviews'],
   ['FAQs', '#faq'],
 ]
-
-import optimizeProcurementBudget from "../assets/optimize-procurement-budgets.jpg";
-import guaranteedDevicePerformance from "../assets/guaranteed-device-performance.jpg";
-import enterpriseWarrantySupport from "../assets/enterprise-warranty-support.jpg";
+import {
+  HandCoins,
+  ClipboardCheck,
+  ShieldCheck,
+} from "lucide-react";
 
 export const aboutCards = [
   {
-    image: optimizeProcurementBudget,
+    icon: HandCoins,
     title: "Optimize Procurement Budgets",
     text: "Cut hardware acquisition costs significantly without overspending on brand-new machines.",
   },
   {
-    image: guaranteedDevicePerformance,
+    icon: ClipboardCheck,
     title: "Guaranteed Device Performance",
     text: "Every unit undergoes rigorous, multi-point functional and hardware testing. Get full visibility on device conditions and inspection reports.",
   },
   {
-    image: enterpriseWarrantySupport,
+    icon: ShieldCheck,
     title: "Enterprise Warranty Support",
     text: "Risk-free procurement backed by warranty coverage and structured post-purchase assistance.",
   },

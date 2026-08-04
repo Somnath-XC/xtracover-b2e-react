@@ -3,29 +3,29 @@ import Reveal from './Reveal'
 
 const comparisonRows = [
   {
-    criterion: 'Quality & Inspection',
-    used: 'Limited or unknown testing',
-    certified: 'Structured, multi-point quality checks',
+    criterion: 'Quality Verification',
+    used: 'Manual / Inconsistent',
+    certified: 'Structured 67-parameter diagnostic inspection',
   },
   {
-    criterion: 'Device Preparation',
-    used: 'No standard preparation',
-    certified: 'Professionally cleaned, reset and prepared',
+    criterion: 'Physical Condition',
+    used: 'Largely based on the seller’s description or a basic visual check',
+    certified: 'Professionally Graded Devices',
   },
   {
-    criterion: 'Transparency',
-    used: 'Limited device information',
-    certified: 'Clear specifications and condition grading',
+    criterion: 'Business Readiness',
+    used: 'Your IT team may need to inspect, clean, reset, configure, and validate the device before deployment',
+    certified: 'Professionally cleaned, reset, tested, and ready for business deployment',
   },
   {
-    criterion: 'Warranty & After-Sales',
-    used: 'No dependable after-sales support',
-    certified: 'Dedicated warranty support included',
+    criterion: 'Consistency Across Bulk Orders',
+    used: 'Device condition and performance can vary significantly from one unit to another',
+    certified: 'Every device follows the same quality-check process and defined condition-grading standards',
   },
   {
-    criterion: 'Seller Reliability',
-    used: 'Individual seller dependency',
-    certified: 'Backed by a dedicated business support team',
+    criterion: 'Warranty and Support',
+    used: 'Post-purchase support may depend entirely on the individual seller',
+    certified: 'PAN-India warranty support with 18,500+ serviceable PIN codes',
   },
 ]
 
@@ -44,6 +44,8 @@ export default function Comparison() {
                 <span className="block">Certified Refurbished</span>
                 <span className="block">vs Used Devices</span>
               </h2>
+              <p className='pt-2 text-slate-600'>A used laptop is generally sold based on its existing condition and the seller’s description. Your IT team may still need to inspect, clean, reset, test, and approve every device before it can be issued to an employee.</p>
+              <p className='pt-2 pb-3 text-slate-600'>An <strong>XtraCover Certified Refurbished</strong> laptop goes through this process before it reaches your business.</p>
             </div>
           </Reveal>
         </div>

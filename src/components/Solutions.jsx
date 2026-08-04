@@ -46,8 +46,11 @@ export default function Solutions() {
                 Technology for Every Business Requirement
               </div>
               <h2 className="mt-4 max-w-3xl text-balance text-4xl font-semibold leading-[1.06] tracking-[-.04em] text-brand-950 sm:text-5xl lg:text-[52px]">
-                Start with laptops.<br/> Scale across device categories.
+                One Procurement Partner for all<br/> Device Categories
               </h2>
+              <p className='py-2'>
+                XtraCover helps enterprises source professionally tested devices across categories through one structured procurement and support ecosystem.
+              </p>
             </div>
           </header>
         </Reveal>
