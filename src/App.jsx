@@ -19,6 +19,7 @@ import QuoteForm from './components/QuoteForm'
 import FinalCta from './components/FinalCta'
 import Footer from './components/Footer'
 import BackToTop from './components/BackToTop'
+import SlidingQuotePanel from './components/SlidingQuotePanel'
 
 // Admin Pages & Protection
 import AdminLoginPage from './pages/admin/AdminLoginPage'
@@ -46,14 +47,17 @@ function LandingPage() {
       </main>
       <Footer />
       <BackToTop />
+      <SlidingQuotePanel />
     </div>
   )
 }
 
 export default function App() {
+  const basename = (import.meta.env.BASE_URL || '/').replace(/\/$/, '')
+
   return (
     <AuthProvider>
-      <BrowserRouter>
+      <BrowserRouter basename={basename}>
         <Routes>
           {/* Public Landing Page */}
           <Route path="/" element={<LandingPage />} />

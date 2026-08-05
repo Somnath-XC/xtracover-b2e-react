@@ -18,7 +18,10 @@ function createTransporter() {
 
 // Send email notification on new quote submission
 export async function sendNewInquiryNotification(quoteData) {
-  const recipient = process.env.NOTIFICATION_RECIPIENT_EMAIL || 'jatin.singh@xtracover.com'
+  const recipient = (process.env.NOTIFICATION_RECIPIENT_EMAIL || 'jatin.singh@xtracover.com')
+    .split(',')
+    .map(e => e.trim())
+    .filter(Boolean)
   const fromAddress = process.env.SMTP_FROM_ADDRESS || 'no-reply@xtracover.com'
 
   const subject = `[XtraCover B2E] New Business Quote Request from ${quoteData.name}`

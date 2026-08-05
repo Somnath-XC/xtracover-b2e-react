@@ -8,7 +8,7 @@ import { initializeDatabaseSchema } from './config/initDb.js'
 dotenv.config()
 
 const app = express()
-const PORT = process.env.PORT || 5000
+const PORT = process.env.PORT || 5012
 
 // Middleware - cors() automatically handles OPTIONS preflight with these settings
 app.use(cors({
@@ -19,6 +19,13 @@ app.use(cors({
   optionsSuccessStatus: 200
 }))
 app.use(express.json())
+
+// Normalize URL paths — Nginx may strip /corporate without its trailing slash,
+// producing double slashes like //api/quotes. Collapse them to /api/quotes.
+app.use((req, res, next) => {
+  req.url = req.url.replace(/\/+/g, '/').trimEnd()
+  next()
+})
 
 // Lazy DB initialization — runs once per warm serverless instance
 let dbInitialized = false
@@ -70,9 +77,29 @@ app.get('/api/health', (req, res) => {
   })
 })
 
-// API Routes
+// API Routes — mounted under both /api (dev proxy) and /corporate/api (production)
 app.use('/api/admin', authRoutes)
 app.use('/api/quotes', quoteRoutes)
+app.use('/corporate/api/admin', authRoutes)
+app.use('/corporate/api/quotes', quoteRoutes)
+
+// Serve frontend static build files in production mode
+import path from 'path'
+import { fileURLToPath } from 'url'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
+
+const distPath = path.join(__dirname, '../dist')
+// NOTE: must come AFTER API routes so /corporate/api/* hits Express, not static files
+app.use('/corporate', express.static(distPath))
+app.use(express.static(distPath))
+app.use((req, res, next) => {
+  if (req.method === 'GET' && !req.path.startsWith('/api') && !req.path.startsWith('/corporate/api')) {
+    return res.sendFile(path.join(distPath, 'index.html'))
+  }
+  next()
+})
 
 // Export app as default for Vercel serverless
 export default app

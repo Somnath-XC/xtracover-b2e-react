@@ -1,5 +1,10 @@
 // Frontend API Client for communicating with Node.js Express & MSSQL Backend
 
+// Vite injects BASE_URL as '/corporate/' in production and '/' in dev,
+// matching the `base` setting in vite.config.js.
+// Using it as a prefix ensures API calls resolve correctly under /corporate/.
+const API_BASE = import.meta.env.BASE_URL.replace(/\/$/, '') // strip trailing slash
+
 function getAuthHeaders() {
   const token = localStorage.getItem('xtra_admin_token') || sessionStorage.getItem('xtra_admin_token')
   return {
@@ -10,7 +15,7 @@ function getAuthHeaders() {
 
 // 1. Admin Login API Call
 export async function apiLoginAdmin(email, password) {
-  const response = await fetch('/api/admin/login', {
+  const response = await fetch(`${API_BASE}/api/admin/login`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ email, password })
@@ -25,7 +30,7 @@ export async function apiLoginAdmin(email, password) {
 
 // 2. Submit Business Quote Request (Public)
 export async function apiSubmitQuote(formData) {
-  const response = await fetch('/api/quotes', {
+  const response = await fetch(`${API_BASE}/api/quotes`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(formData)
@@ -40,7 +45,7 @@ export async function apiSubmitQuote(formData) {
 
 // 3. Get All Quote Submissions from Database (Protected)
 export async function apiGetQuotes() {
-  const response = await fetch('/api/quotes', {
+  const response = await fetch(`${API_BASE}/api/quotes`, {
     method: 'GET',
     headers: getAuthHeaders()
   })
@@ -54,7 +59,7 @@ export async function apiGetQuotes() {
 
 // 4. Update Quote Status in Database (Protected)
 export async function apiUpdateQuoteStatus(id, status) {
-  const response = await fetch(`/api/quotes/${encodeURIComponent(id)}/status`, {
+  const response = await fetch(`${API_BASE}/api/quotes/${encodeURIComponent(id)}/status`, {
     method: 'PATCH',
     headers: getAuthHeaders(),
     body: JSON.stringify({ status })
@@ -69,7 +74,7 @@ export async function apiUpdateQuoteStatus(id, status) {
 
 // 5. Delete Quote Entry from Database (Protected)
 export async function apiDeleteQuote(id) {
-  const response = await fetch(`/api/quotes/${encodeURIComponent(id)}`, {
+  const response = await fetch(`${API_BASE}/api/quotes/${encodeURIComponent(id)}`, {
     method: 'DELETE',
     headers: getAuthHeaders()
   })
@@ -83,7 +88,7 @@ export async function apiDeleteQuote(id) {
 
 // 6. Clear All Quotes from Database (Protected)
 export async function apiClearQuotes() {
-  const response = await fetch('/api/quotes', {
+  const response = await fetch(`${API_BASE}/api/quotes`, {
     method: 'DELETE',
     headers: getAuthHeaders()
   })

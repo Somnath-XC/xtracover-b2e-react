@@ -18,7 +18,7 @@ export default function Footer() {
     <footer className="bg-brand-950 py-14 text-white">
       <div className="container-site grid gap-10 sm:grid-cols-2 lg:grid-cols-[1.35fr_.7fr_.7fr_1.2fr]">
         <div>
-          <a href="#top" className="flex items-center gap-2.5" aria-label="XtraCover home">
+          <a href="/" className="flex items-center gap-2.5" aria-label="XtraCover home">
             <span className="text-lg font-black"><img src={logo} alt="XtraCover Logo" /></span>
           </a>
           <p className="mt-5 max-w-sm text-sm leading-6 text-blue-100/55">Certified refurbished laptops and business devices for organizations across India.</p>
