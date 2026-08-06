@@ -22,6 +22,7 @@ export default function DeviceCard({
   }
 
   return (
+    <a href="#quote">
     <article
       className={`group relative flex h-full min-h-[390px] w-full flex-col overflow-hidden rounded-[28px] border p-5 transition duration-300 hover:-translate-y-1 sm:p-6 ${
         featured
@@ -53,6 +54,7 @@ export default function DeviceCard({
 
       <WarrantyBadge className="mt-0.5" />
     </article>
+    </a>
   )
 }
 

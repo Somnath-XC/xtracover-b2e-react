@@ -6,25 +6,23 @@ export const navItems = [
   // ['Reviews', '#reviews'],
   ['FAQs', '#faq'],
 ]
-import {
-  HandCoins,
-  ClipboardCheck,
-  ShieldCheck,
-} from "lucide-react";
+import budgetImage from "../assets/optimize-procurement-budgets.jpg";
+import performanceImage from "../assets/guaranteed-device-performance.jpg";
+import warrantyImage from "../assets/enterprise-warranty-support.jpg";
 
 export const aboutCards = [
   {
-    icon: HandCoins,
+    image: budgetImage,
     title: "Optimize Procurement Budgets",
     text: "Cut hardware acquisition costs significantly without overspending on brand-new machines.",
   },
   {
-    icon: ClipboardCheck,
+    image: performanceImage,
     title: "Guaranteed Device Performance",
-    text: "Every unit undergoes rigorous, multi-point functional and hardware testing. Get full visibility on device conditions and inspection reports.",
+    text: "Every unit undergoes rigorous, multi-point functional and hardware testing. Get full visibility into device conditions and inspection reports.",
   },
   {
-    icon: ShieldCheck,
+    image: warrantyImage,
     title: "Enterprise Warranty Support",
     text: "Risk-free procurement backed by warranty coverage and structured post-purchase assistance.",
   },

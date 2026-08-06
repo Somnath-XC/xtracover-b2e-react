@@ -33,11 +33,13 @@ function LandingPage() {
       <main>
         <Hero />
         <TrustBar />
-        <About />
-        <Solutions />
-        <Warranty />
         <QualityCheck />
+        <Warranty />
+        <About />
         <Comparison />
+
+        <Solutions />
+
         <Configurations />
         <Industries />
         <Process />

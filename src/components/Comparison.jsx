@@ -124,7 +124,7 @@ export default function Comparison() {
               <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-600">Get clearer specifications, structured preparation and business support before your team receives the devices.</p>
             </div>
             <a href="#quote" className="inline-flex min-h-[50px] shrink-0 items-center gap-2 rounded-xl bg-brand-600 px-6 text-sm font-semibold text-white shadow-lg shadow-brand-600/20 transition duration-300 hover:-translate-y-0.5 hover:bg-brand-700">
-              Speak with a Device Expert <Icon name="arrow" className="h-4 w-4" />
+              Contact Us <Icon name="arrow" className="h-4 w-4" />
             </a>
           </div>
         </Reveal>

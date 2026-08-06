@@ -25,7 +25,7 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+html { scroll-behavior: smooth; scroll-padding-top: 50px; }
 body { margin: 0; min-width: 320px; font-family: "Inter", "Avenir Next", ui-sans-serif, system-ui, sans-serif; font-weight: 400; }
 
 h1, h2, h3, h4, h5, h6 {
@@ -2928,7 +2928,7 @@ strong { font-weight: 650; }
 
 /* Requested QC actions and warranty navigation refinements */
 #warranty {
-  scroll-margin-top: 88px;
+  scroll-margin-top:0px;
 }
 
 .qc-verify-actions {

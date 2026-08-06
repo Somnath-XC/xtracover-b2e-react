@@ -14,46 +14,44 @@ export default function About() {
             />
           </Reveal>
 
-          <p className="pt-2 text-slate-600">
-            Buying brand-new devices for every role can lock significant
-            capital into hardware that may exceed actual employee requirements.
+          <p className="pt-2 pb-2 text-slate-600">
+            Not every employee needs a brand-new laptop with the latest specifications. For many business roles, a professionally refurbished device can deliver the required performance at a significantly lower acquisition cost.
           </p>
 
-          <p className="pb-3 text-slate-600">
-            With Certified Refurbished devices, procure at a lower acquisition
-            cost, while maintaining visibility into device quality and access
-            to structured warranty support.
+          <p className="pb-2 text-slate-600">
+           XtraCover helps businesses align device specifications with actual workforce requirements, making it easier to avoid unnecessary spending and deploy more devices within the same procurement budget. This allows capital to remain available for other priorities such as hiring, software, infrastructure and business expansion.
           </p>
+          <p className="pb-3 text-slate-600">
+            With defined device standards and structured post-purchase coverage, enterprises can reduce the financial uncertainty often associated with secondary-market hardware. The result is a more practical and scalable approach to employee device procurement.
+          </p>
+
         </div>
 
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {aboutCards.map((card, index) => {
-            const CardIcon = card.icon;
-
-            return (
-              <Reveal key={card.title} delay={index * 65}>
-                <article className="group h-full min-h-[270px] rounded-2xl border border-blue-100/60 bg-white p-6 shadow-[0_14px_38px_rgba(15,35,92,.055)] transition duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-xl hover:shadow-blue-950/5">
-                  <div className="flex h-28 items-center justify-center rounded-2xl bg-gradient-to-br from-blue-50 to-sky-100">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white text-brand-600 shadow-[0_10px_30px_rgba(37,99,235,.15)] transition duration-300 group-hover:scale-110">
-                      <CardIcon
-                        size={34}
-                        strokeWidth={1.8}
-                        aria-hidden="true"
-                      />
-                    </div>
+           {aboutCards.map((card, index) => (
+            <Reveal key={card.title} delay={index * 65}>
+              <article className="group h-full min-h-[270px] rounded-2xl border border-blue-100/60 bg-white p-6 shadow-[0_14px_38px_rgba(15,35,92,0.055)] transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-xl hover:shadow-blue-950/5">
+                <div className="flex items-center justify-center rounded-2xl bg-gradient-to-br from-blue-50 to-sky-100">
+                  <div className="w-full overflow-hidden rounded-xl bg-slate-100">
+                    <img
+                      src={card.image}
+                      alt={card.title}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      loading="lazy"
+                    />
                   </div>
+                </div>
 
-                  <h3 className="mt-7 text-lg font-black tracking-[-0.03em] text-brand-950">
-                    {card.title}
-                  </h3>
+                <h3 className="mt-7 text-lg font-black tracking-[-0.03em] text-brand-950">
+                  {card.title}
+                </h3>
 
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
-                    {card.text}
-                  </p>
-                </article>
-              </Reveal>
-            );
-          })}
+                <p className="mt-3 text-sm leading-6 text-slate-600">
+                  {card.text}
+                </p>
+              </article>
+            </Reveal>
+          ))}
         </div>
       </div>
     </section>

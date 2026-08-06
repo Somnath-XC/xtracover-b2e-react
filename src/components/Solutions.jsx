@@ -48,9 +48,9 @@ export default function Solutions() {
               <h2 className="mt-4 max-w-3xl text-balance text-4xl font-semibold leading-[1.06] tracking-[-.04em] text-brand-950 sm:text-5xl lg:text-[52px]">
                 One Procurement Partner for all<br/> Device Categories
               </h2>
-              <p className='py-2'>
-                XtraCover helps enterprises source professionally tested devices across categories through one structured procurement and support ecosystem.
-              </p>
+              <p className='py-2 text-slate-600'>
+               Managing multiple device requirements through different vendors can make procurement difficult to coordinate. Pricing, availability, specifications, delivery timelines and vendor communication often vary across categories, creating additional work for procurement and IT teams. </p>
+              <p className='text-slate-600'>XtraCover gives businesses one channel to source professionally prepared devices across laptops, desktops, mobiles and tablets. Whether you are equipping office teams, supporting field operations, setting up computer labs or expanding to new locations, device requirements can be planned through a single procurement ecosystem.</p>
             </div>
           </header>
         </Reveal>

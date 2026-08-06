@@ -83,8 +83,8 @@ export default function QualityCheck() {
 
               <p>
                 Every laptop undergoes a rigorous <strong>67-parameter</strong> inspection powered by <strong>XCQC</strong>, our advanced quality-check platform trusted by leading OEMs such as <strong>Lenovo</strong> and <strong>Acer</strong>, and major marketplaces including <strong>Flipkart</strong> and <strong>Amazon</strong>.</p>
-                <p>Once approved, each laptop is issued a device-level QC certificate, giving procurement and IT teams complete visibility into its tested condition before deployment.</p>
-
+                <p>Along with functional testing, the cosmetic condition of each device is evaluated against defined grading standards. The display, body, keyboard, frame, hinges, ports and visible signs of wear are assessed to provide a clear representation of the laptop’s physical condition.</p>
+                <p>Once approved, each laptop is issued a device-level QC certificate that records its test results and verified condition. This gives procurement and IT teams complete, auditable visibility into both the functional performance and cosmetic grade of the device before deployment.</p>
              
 
               <div className="qc-verify-actions">

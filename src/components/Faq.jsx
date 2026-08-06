@@ -11,7 +11,7 @@ export default function Faq() {
       <div className="container-site grid gap-12 lg:grid-cols-[.72fr_1.28fr]">
         <Reveal>
           <SectionHeading eyebrow="Frequently asked questions" title="Frequently Asked Questions" text="Need a specific model, configuration or device mix? Share your requirements and the business team can recommend suitable available options." />
-          <a href="#quote" className="mt-7 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.14em] text-brand-600">Talk to an expert</a>
+          <a href="#quote" className="mt-7 inline-flex items-center gap-2 text-xs font-extrabold uppercase tracking-[0.14em] text-brand-600">Contact Us</a>
         </Reveal>
 
         <Reveal delay={90}>

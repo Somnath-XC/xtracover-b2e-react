@@ -9,6 +9,7 @@ export default function Industries() {
         <Reveal><SectionHeading center eyebrow="Industries we serve" title="Business devices for different operating environments" /></Reveal>
         <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
            {industries.map((industry, index) => (
+            <a href="#quote">
             <Reveal key={industry.title} delay={(index % 3) * 60}>
               <article className="industry-card group relative overflow-hidden rounded-2xl border border-blue-100/60 bg-white transition duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-xl hover:shadow-blue-950/5">
                 
@@ -29,6 +30,7 @@ export default function Industries() {
                 {/* <span className="absolute -right-12 -top-12 h-28 w-28 rounded-full bg-cyan-50" /> */}
               </article>
             </Reveal>
+            </a>
           ))}
         </div>
       </div>

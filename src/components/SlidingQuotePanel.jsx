@@ -151,7 +151,7 @@ export default function SlidingQuotePanel() {
               disabled={loading}
               className="mt-2 inline-flex h-11 w-full items-center justify-center rounded-lg bg-brand-600 px-4 text-sm font-bold text-white shadow-md shadow-brand-600/20 transition hover:bg-brand-700 active:scale-[0.99] disabled:opacity-50"
             >
-              {loading ? 'Submitting...' : 'Get Business Quote'}
+              {loading ? 'Submitting...' : 'Get Quote'}
             </button>
 
             <p className="mt-2 text-center text-[10px] text-slate-400">
@@ -159,8 +159,48 @@ export default function SlidingQuotePanel() {
             </p>
 
             {submitted && (
-              <div role="status" className="mt-3 rounded-xl bg-blue-50 p-3 text-xs font-semibold text-brand-700">
-                Thank you. Your requirement has been recorded for the XtraCover business team.
+              <div
+                className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4"
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="success-title"
+              >
+                <div className="relative w-full max-w-md rounded-2xl bg-white p-6 text-center shadow-2xl">
+                  <button
+                    type="button"
+                    onClick={() => setSubmitted(false)}
+                    className="absolute right-4  h-10 w-10 top-4 text-3xl text-slate-400 transition hover:text-slate-700"
+                    aria-label="Close popup"
+                  >
+                    ×
+                  </button>
+
+                  <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-green-100 text-2xl text-green-600">
+                    ✓
+                  </div>
+
+                  <h3
+                    id="success-title"
+                    className="text-xl font-bold text-slate-900"
+                  >
+                    Thank you!
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                    Your request has been submitted successfully.
+                    <br />
+                    We will get in touch with you shortly to discuss the best solution for
+                    your needs.
+                  </p>
+
+                  <button
+                    type="button"
+                    onClick={() => setSubmitted(false)}
+                    className="mt-6 rounded-xl bg-brand-700 px-6 py-3 text-sm font-semibold text-white transition hover:bg-brand-800"
+                  >
+                    Close
+                  </button>
+                </div>
               </div>
             )}
           </form>

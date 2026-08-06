@@ -1,8 +1,8 @@
 import Icon from './Icon'
 import logo from "../assets/logo.svg";
 const columns = [
-  ['Quick Links', [['About', '#about'], ['Solutions', '#solutions'], ['Industries', '#industries'], ['FAQs', '#faq']]],
-  ['Products', [['Laptops', '#solutions'], ['Desktops', '#solutions'], ['Mobiles', '#solutions'], ['Tablets', '#solutions']]],
+  ['Quick Links', [['About XtraCover',  'https://www.xtracover.com/about-us', { target: '_blank' }], ['Solutions', '#solutions'], ['Industries', '#industries'], ['FAQs', '#faq']]],
+  ['Policy', [['Privacy Policy', 'https://www.xtracover.com/privacy-policy', { target: '_blank' }], ['Warranty Policy', 'https://www.xtracover.com/warranty-policy', { target: '_blank' }], ['Cookie Policy', 'https://www.xtracover.com/cookie-policy', { target: '_blank' }], ['Return & Refund Policy', 'https://www.xtracover.com/return-policy', { target: '_blank' }], ['GDPR Privacy', 'https://www.xtracover.com/gdpr-privacy', { target: '_blank' }], ['Shipping Policy', 'https://www.xtracover.com/shipping-policy', { target: '_blank' }]]],
 ]
 
 const socialLinks = [
@@ -28,7 +28,6 @@ export default function Footer() {
               <a
                 key={label}
                 href={href}
-                target="_blank"
                 rel="noreferrer"
                 aria-label={`Visit XtraCover on ${label}`}
                 className="footer-social-link"
@@ -39,12 +38,12 @@ export default function Footer() {
           </div>
         </div>
 
-        {columns.map(([title, links]) => (
+        {columns.map(([title, links,]) => (
           <div key={title}>
             <h3 className="text-xs font-extrabold">{title}</h3>
             <div className="mt-4 grid gap-2.5">
-              {links.map(([label, href]) => (
-                <a key={label} href={href} className="text-xs text-blue-100/50 transition hover:text-white">{label}</a>
+              {links.map(([label, href, props = {}]) => (
+                <a  key={label} href={href} {...props} rel={props.target === "_blank" ? "noopener noreferrer" : undefined} className="text-xs text-blue-100/50 transition hover:text-white">{label}</a>
               ))}
             </div>
           </div>
@@ -66,7 +65,7 @@ export default function Footer() {
               <span>+91 921-218-1545</span>
             </a>
             <a href="#quote" className="mt-1 inline-flex w-fit items-center gap-2 rounded-lg bg-brand-600 px-4 py-2.5 font-bold text-white transition hover:-translate-y-0.5 hover:bg-brand-500">
-              Talk to an Expert <Icon name="arrow" className="h-3.5 w-3.5" />
+              Contact Us <Icon name="arrow" className="h-3.5 w-3.5" />
             </a>
           </div>
         </div>
@@ -74,7 +73,6 @@ export default function Footer() {
 
       <div className="container-site mt-12 flex flex-col justify-between gap-4 border-t border-white/10 pt-6 text-[10px] text-blue-100/30 sm:flex-row">
         <span>© 2026 XtraCover. All rights reserved.</span>
-        <div className="flex gap-5"><a href="https://www.xtracover.com/privacy-policy" target="_blank" rel="noreferrer">Privacy Policy</a><a href="https://www.xtracover.com/Terms-and-Conditions" target="_blank" rel="noreferrer">Terms</a></div>
       </div>
     </footer>
   )

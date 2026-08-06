@@ -14,7 +14,7 @@ export default function PreFormStrip() {
             </div>
             <div className="flex shrink-0 flex-col gap-3 sm:flex-row">
               <a href="#quote" className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-xl bg-brand-600 px-6 text-sm font-bold text-white transition hover:-translate-y-0.5 hover:bg-brand-700">Request Bulk Pricing <Icon name="arrow" className="h-4 w-4" /></a>
-              <a href="#quote" className="inline-flex min-h-[48px] items-center justify-center rounded-xl border border-slate-200 px-6 text-sm font-bold text-brand-700 transition hover:-translate-y-0.5 hover:border-brand-300">Talk to an Expert</a>
+              <a href="#quote" className="inline-flex min-h-[48px] items-center justify-center rounded-xl border border-slate-200 px-6 text-sm font-bold text-brand-700 transition hover:-translate-y-0.5 hover:border-brand-300">Contact Us</a>
             </div>
           </div>
         </Reveal>
