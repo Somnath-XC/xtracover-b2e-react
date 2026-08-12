@@ -561,7 +561,7 @@ export async function sendCustomerConfirmationEmail(quoteData) {
                     font-size:12px;
                     line-height:20px;
                   font-family:Inter,Arial,Helvetica,sans-serif;" valign="middle">
-                                        A-1, 3rd Floor, FIEE Complex Okhla Industrial Area Phase-2, New Delhi South Delhi DL 110020
+                                        A-1, 3rd Floor, FIEE Complex, Okhla Industrial Area, Phase-2, New Delhi, South Delhi, Delhi – 110020, India
                                     </td>
                                 </tr>
                             </table>
