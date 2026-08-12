@@ -1,7 +1,7 @@
 import Icon from './Icon'
 import logo from "../assets/logo.svg";
 const columns = [
-  ['Quick Links', [['About XtraCover',  'https://www.xtracover.com/about-us', { target: '_blank' }], ['Solutions', '#solutions'], ['Industries', '#industries'], ['FAQs', '#faq']]],
+  ['Quick Links', [['About XtraCover', 'https://www.xtracover.com/about-us', { target: '_blank' }], ['Solutions', '#solutions'], ['Industries', '#industries'], ['FAQs', '#faq']]],
   ['Policy', [['Privacy Policy', 'https://www.xtracover.com/privacy-policy', { target: '_blank' }], ['Warranty Policy', 'https://www.xtracover.com/warranty-policy', { target: '_blank' }], ['Cookie Policy', 'https://www.xtracover.com/cookie-policy', { target: '_blank' }], ['Return & Refund Policy', 'https://www.xtracover.com/return-policy', { target: '_blank' }], ['GDPR Privacy', 'https://www.xtracover.com/gdpr-privacy', { target: '_blank' }], ['Shipping Policy', 'https://www.xtracover.com/shipping-policy', { target: '_blank' }]]],
 ]
 
@@ -29,6 +29,7 @@ export default function Footer() {
                 key={label}
                 href={href}
                 rel="noreferrer"
+                target='_blank'
                 aria-label={`Visit XtraCover on ${label}`}
                 className="footer-social-link"
               >
@@ -43,7 +44,7 @@ export default function Footer() {
             <h3 className="text-xs font-extrabold">{title}</h3>
             <div className="mt-4 grid gap-2.5">
               {links.map(([label, href, props = {}]) => (
-                <a  key={label} href={href} {...props} rel={props.target === "_blank" ? "noopener noreferrer" : undefined} className="text-xs text-blue-100/50 transition hover:text-white">{label}</a>
+                <a key={label} href={href} {...props} rel={props.target === "_blank" ? "noopener noreferrer" : undefined} className="text-xs text-blue-100/50 transition hover:text-white">{label}</a>
               ))}
             </div>
           </div>

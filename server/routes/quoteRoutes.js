@@ -1,7 +1,7 @@
 import express from 'express'
 import { getDbPool, mssql } from '../config/db.js'
 import { verifyJWTToken } from '../middleware/authMiddleware.js'
-import { sendNewInquiryNotification } from '../services/emailService.js'
+import { sendNewInquiryNotification, sendCustomerConfirmationEmail } from '../services/emailService.js'
 
 const router = express.Router()
 
@@ -43,9 +43,12 @@ router.post('/', async (req, res) => {
       submittedAt: new Date().toLocaleString()
     }
 
-    // Trigger email notification to jatin.singh@xtracover.com asynchronously
+    // Trigger internal notification & customer confirmation emails asynchronously
     sendNewInquiryNotification(quoteRecord).catch((err) => {
-      console.error('Asynchronous email dispatch error:', err)
+      console.error('Asynchronous admin email dispatch error:', err)
+    })
+    sendCustomerConfirmationEmail(quoteRecord).catch((err) => {
+      console.error('Asynchronous customer email dispatch error:', err)
     })
 
     return res.status(201).json({
