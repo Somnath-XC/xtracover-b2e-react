@@ -29,6 +29,7 @@ export default function Footer() {
                 key={label}
                 href={href}
                 rel="noreferrer"
+                target='_blank'
                 aria-label={`Visit XtraCover on ${label}`}
                 className="footer-social-link"
               >

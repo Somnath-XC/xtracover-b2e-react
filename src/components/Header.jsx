@@ -50,9 +50,9 @@ export default function Header() {
     <div className={`site-header-slot ${sticky ? 'is-sticky' : ''}`}>
       <header className={`site-header ${sticky ? 'is-sticky' : ''}`}>
         <div className="site-header-inner container-site flex h-[68px] items-center gap-7">
-          <a href="/" className="site-header-logo flex items-center gap-2.5" aria-label="XtraCover Business home">
+          <a href="/#Top" className="site-header-logo flex items-center gap-2.5" aria-label="XtraCover Business home">
             <span className="site-header-brand text-lg font-bold tracking-[-0.03em] text-brand-950"><img src={logo} alt="XtraCover Logo" /></span>
-            <span className="hidden rounded-full bg-brand-50 px-2 py-1 text-[8px] font-bold uppercase tracking-[0.17em] text-brand-600 sm:inline">Corporate</span>
+            <span className=" rounded-full bg-brand-50 px-2 py-1 text-[8px] font-bold uppercase tracking-[0.17em] text-brand-600 sm:inline">Corporate</span>
           </a>
 
           <nav className="ml-auto hidden items-center gap-6 xl:flex" aria-label="Primary navigation">

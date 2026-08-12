@@ -1669,6 +1669,19 @@ strong { font-weight: 650; }
   background: rgba(37,70,150,.08);
   box-shadow: 0 0 0 3px rgba(37,70,150,.16);
 }
+
+/* Chrome, Edge, Safari */
+.qc-search-field input:focus[type="search"]::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  appearance: none;
+  display: none;
+}
+
+/* Firefox */
+.qc-search-field input:focus[type="search"] {
+  appearance: none;
+}
+
 .qc-search-field button {
   position: absolute;
   right: 8px;

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
+import logo from "../../assets/logo.svg";
+
 import {
   apiGetQuotes,
   apiUpdateQuoteStatus,
@@ -113,11 +115,11 @@ export default function AdminDashboardPage() {
         <div className="w-full px-6 sm:px-8 lg:px-10 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <Link to="/" className="flex items-center gap-3 group">
-              <div className="h-10 w-10 rounded-xl bg-brand-600 flex items-center justify-center font-black text-white text-lg shadow-sm group-hover:scale-105 transition-transform">
+              {/* <div className="h-10 w-10 rounded-xl bg-brand-600 flex items-center justify-center font-black text-white text-lg shadow-sm group-hover:scale-105 transition-transform">
                 X
-              </div>
+              </div> */}
               <div className="flex flex-col">
-                <span className="font-extrabold text-lg text-slate-900 tracking-tight leading-none">XtraCover B2E Admin</span>
+                <span className="font-extrabold text-lg text-slate-900 tracking-tight leading-none"><img src={logo} alt="XtraCover Logo" /></span>
               </div>
             </Link>
           </div>

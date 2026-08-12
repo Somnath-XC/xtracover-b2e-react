@@ -121,7 +121,7 @@ export default function QuoteForm() {
               {loading ? 'Submitting...' : 'Get Quote'}
             </button>
 
-            <p className="mt-3 text-center text-[10px] text-slate-400">
+            <p className="mt-3 text-center text-[13px] text-slate-600">
               By submitting, you agree to be contacted regarding your business requirement.
             </p>
 
