@@ -1,6 +1,14 @@
 import { useState, useEffect } from 'react'
 import Icon from './Icon'
 import { apiSubmitQuote } from '../services/apiService'
+import {
+  sanitizeContactInput,
+  validateName,
+  validateContact,
+  validateEmail,
+  validateMessage,
+  validateQuoteForm,
+} from '../utils/validation'
 
 const initialForm = {
   name: '',
@@ -14,6 +22,8 @@ export default function SlidingQuotePanel() {
   const [submitted, setSubmitted] = useState(false)
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState(initialForm)
+  const [touched, setTouched] = useState({})
+  const [errors, setErrors] = useState({})
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -23,19 +33,61 @@ export default function SlidingQuotePanel() {
     return () => window.removeEventListener('keydown', handleKeyDown)
   }, [])
 
+  function getFieldError(fieldName, value) {
+    switch (fieldName) {
+      case 'name':
+        return validateName(value)
+      case 'contact':
+        return validateContact(value)
+      case 'email':
+        return validateEmail(value)
+      case 'message':
+        return validateMessage(value)
+      default:
+        return null
+    }
+  }
+
   function updateField(e) {
     const { name, value } = e.target
-    setFormData((curr) => ({ ...curr, [name]: value }))
+    const sanitizedVal = name === 'contact' ? sanitizeContactInput(value) : value
+
+    setFormData((curr) => ({ ...curr, [name]: sanitizedVal }))
     setSubmitted(false)
+
+    if (touched[name]) {
+      const err = getFieldError(name, sanitizedVal)
+      setErrors((prev) => ({ ...prev, [name]: err }))
+    }
+  }
+
+  function handleBlur(e) {
+    const { name, value } = e.target
+    setTouched((prev) => ({ ...prev, [name]: true }))
+    const err = getFieldError(name, value)
+    setErrors((prev) => ({ ...prev, [name]: err }))
   }
 
   async function handleSubmit(e) {
     e.preventDefault()
+
+    const allTouched = { name: true, contact: true, email: true, message: true }
+    setTouched(allTouched)
+
+    const validationErrors = validateQuoteForm(formData)
+    setErrors(validationErrors)
+
+    if (Object.keys(validationErrors).length > 0) {
+      return
+    }
+
     setLoading(true)
     try {
       await apiSubmitQuote(formData)
       setSubmitted(true)
       setFormData(initialForm)
+      setTouched({})
+      setErrors({})
     } catch (err) {
       alert(err.message || 'Failed to record quote request in database. Please try again.')
     } finally {
@@ -93,7 +145,7 @@ export default function SlidingQuotePanel() {
             </button>
           </div>
 
-          <form onSubmit={handleSubmit} className="space-y-3.5">
+          <form onSubmit={handleSubmit} className="space-y-3.5" noValidate>
             <label className="grid gap-1.5 text-xs font-bold text-brand-950">
               Name
               <input
@@ -102,22 +154,38 @@ export default function SlidingQuotePanel() {
                 type="text"
                 value={formData.name}
                 onChange={updateField}
+                onBlur={handleBlur}
                 placeholder="Your full name"
-                className="h-10 rounded-lg border border-slate-200 px-3 text-sm font-normal outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-50"
+                className={`h-10 rounded-lg border px-3 text-sm font-normal outline-none transition ${
+                  touched.name && errors.name
+                    ? 'border-red-500 ring-2 ring-red-100'
+                    : 'border-slate-200 focus:border-brand-400 focus:ring-2 focus:ring-brand-50'
+                }`}
               />
+              {touched.name && errors.name && (
+                <span className="text-[11px] font-semibold text-red-500">{errors.name}</span>
+              )}
             </label>
 
             <label className="grid gap-1.5 text-xs font-bold text-brand-950">
-              Contact
+              Contact Number
               <input
                 required
                 name="contact"
                 type="tel"
                 value={formData.contact}
                 onChange={updateField}
-                placeholder="+91"
-                className="h-10 rounded-lg border border-slate-200 px-3 text-sm font-normal outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-50"
+                onBlur={handleBlur}
+                placeholder="+91 98765 43210"
+                className={`h-10 rounded-lg border px-3 text-sm font-normal outline-none transition ${
+                  touched.contact && errors.contact
+                    ? 'border-red-500 ring-2 ring-red-100'
+                    : 'border-slate-200 focus:border-brand-400 focus:ring-2 focus:ring-brand-50'
+                }`}
               />
+              {touched.contact && errors.contact && (
+                <span className="text-[11px] font-semibold text-red-500">{errors.contact}</span>
+              )}
             </label>
 
             <label className="grid gap-1.5 text-xs font-bold text-brand-950">
@@ -128,9 +196,17 @@ export default function SlidingQuotePanel() {
                 type="email"
                 value={formData.email}
                 onChange={updateField}
+                onBlur={handleBlur}
                 placeholder="name@company.com"
-                className="h-10 rounded-lg border border-slate-200 px-3 text-sm font-normal outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-50"
+                className={`h-10 rounded-lg border px-3 text-sm font-normal outline-none transition ${
+                  touched.email && errors.email
+                    ? 'border-red-500 ring-2 ring-red-100'
+                    : 'border-slate-200 focus:border-brand-400 focus:ring-2 focus:ring-brand-50'
+                }`}
               />
+              {touched.email && errors.email && (
+                <span className="text-[11px] font-semibold text-red-500">{errors.email}</span>
+              )}
             </label>
 
             <label className="grid gap-1.5 text-xs font-bold text-brand-950">
@@ -141,9 +217,17 @@ export default function SlidingQuotePanel() {
                 rows="3"
                 value={formData.message}
                 onChange={updateField}
+                onBlur={handleBlur}
                 placeholder="Share the device category, quantity, preferred configuration, delivery city and any specific requirements"
-                className="resize-y rounded-lg border border-slate-200 p-3 text-sm font-normal outline-none transition focus:border-brand-400 focus:ring-2 focus:ring-brand-50"
+                className={`resize-y rounded-lg border p-3 text-sm font-normal outline-none transition ${
+                  touched.message && errors.message
+                    ? 'border-red-500 ring-2 ring-red-100'
+                    : 'border-slate-200 focus:border-brand-400 focus:ring-2 focus:ring-brand-50'
+                }`}
               />
+              {touched.message && errors.message && (
+                <span className="text-[11px] font-semibold text-red-500">{errors.message}</span>
+              )}
             </label>
 
             <button
@@ -169,7 +253,7 @@ export default function SlidingQuotePanel() {
                   <button
                     type="button"
                     onClick={() => setSubmitted(false)}
-                    className="absolute right-4  h-10 w-10 top-4 text-3xl text-slate-400 transition hover:text-slate-700"
+                    className="absolute right-4 top-4 h-10 w-10 text-3xl text-slate-400 transition hover:text-slate-700"
                     aria-label="Close popup"
                   >
                     ×
@@ -209,3 +293,4 @@ export default function SlidingQuotePanel() {
     </>
   )
 }
+

@@ -11,28 +11,28 @@ const __dirname = path.dirname(__filename)
 
 // Create transporter lazily so env vars are always resolved after dotenv has loaded
 function createTransporter() {
-  return nodemailer.createTransport({
-    host: process.env.SMTP_HOST || 'email-smtp.ap-south-1.amazonaws.com',
-    port: parseInt(process.env.SMTP_PORT || '587', 10),
-    secure: false, // 587 uses STARTTLS (not SSL)
-    auth: {
-      user: process.env.SMTP_USERNAME,
-      pass: process.env.SMTP_PASSWORD
-    }
-  })
+    return nodemailer.createTransport({
+        host: process.env.SMTP_HOST || 'email-smtp.ap-south-1.amazonaws.com',
+        port: parseInt(process.env.SMTP_PORT || '587', 10),
+        secure: false, // 587 uses STARTTLS (not SSL)
+        auth: {
+            user: process.env.SMTP_USERNAME,
+            pass: process.env.SMTP_PASSWORD
+        }
+    })
 }
 
 // Send email notification on new quote submission (Admin)
 export async function sendNewInquiryNotification(quoteData) {
-  const recipient = (process.env.NOTIFICATION_RECIPIENT_EMAIL || 'jatin.singh@xtracover.com')
-    .split(',')
-    .map(e => e.trim())
-    .filter(Boolean)
-  const fromAddress = process.env.SMTP_FROM_ADDRESS || 'no-reply@xtracover.com'
+    const recipient = (process.env.NOTIFICATION_RECIPIENT_EMAIL || 'jatin.singh@xtracover.com')
+        .split(',')
+        .map(e => e.trim())
+        .filter(Boolean)
+    const fromAddress = process.env.SMTP_FROM_ADDRESS || 'no-reply@xtracover.com'
 
-  const subject = `[XtraCover B2E] New Business Quote Request from ${quoteData.name}`
+    const subject = `[XtraCover B2E] New Business Quote Request from ${quoteData.name}`
 
-  const htmlContent = `
+    const htmlContent = `
     <!DOCTYPE html>
     <html>
       <head>
@@ -97,49 +97,49 @@ export async function sendNewInquiryNotification(quoteData) {
     </html>
   `
 
-  try {
-    const transporter = createTransporter()
-    const info = await transporter.sendMail({
-      from: `"XtraCover B2E" <${fromAddress}>`,
-      to: recipient,
-      subject: subject,
-      html: htmlContent
-    })
+    try {
+        const transporter = createTransporter()
+        const info = await transporter.sendMail({
+            from: `"XtraCover B2E" <${fromAddress}>`,
+            to: recipient,
+            subject: subject,
+            html: htmlContent
+        })
 
-    console.log(`Email notification sent successfully to ${recipient} (Message ID: ${info.messageId})`)
-    return { success: true, messageId: info.messageId }
-  } catch (err) {
-    console.error(`Failed to send email notification to ${recipient}:`, err)
-    // Return false without breaking the quote creation transaction
-    return { success: false, error: err.message }
-  }
+        console.log(`Email notification sent successfully to ${recipient} (Message ID: ${info.messageId})`)
+        return { success: true, messageId: info.messageId }
+    } catch (err) {
+        console.error(`Failed to send email notification to ${recipient}:`, err)
+        // Return false without breaking the quote creation transaction
+        return { success: false, error: err.message }
+    }
 }
 
 // Send customer confirmation email template when lead/quote is submitted
 export async function sendCustomerConfirmationEmail(quoteData) {
-  const fromAddress = process.env.SMTP_FROM_ADDRESS
-  const subject = 'Thank You for Your Enquiry | XtraCover Corporate Laptop Solutions'
+    const fromAddress = process.env.SMTP_FROM_ADDRESS
+    const subject = 'Thank You for Your Enquiry | XtraCover Corporate Laptop Solutions'
 
-  // Read logo PNG and embed as inline CID attachment
-  const logoPath = path.resolve(__dirname, '../../xclogo.png')
-  let logoContent = null
-  try {
-    logoContent = fs.readFileSync(logoPath)
-  } catch (e) {
-    console.error('Could not read logo image for customer email:', e.message)
-  }
+    // Read logo PNG and embed as inline CID attachment
+    const logoPath = path.resolve(__dirname, '../../xclogo.png')
+    let logoContent = null
+    try {
+        logoContent = fs.readFileSync(logoPath)
+    } catch (e) {
+        console.error('Could not read logo image for customer email:', e.message)
+    }
 
-  const attachments = []
-  if (logoContent) {
-    attachments.push({
-      filename: 'xclogo.png',
-      content: logoContent,
-      contentType: 'image/png',
-      cid: 'xtracover_logo'
-    })
-  }
+    const attachments = []
+    if (logoContent) {
+        attachments.push({
+            filename: 'xclogo.png',
+            content: logoContent,
+            contentType: 'image/png',
+            cid: 'xtracover_logo'
+        })
+    }
 
-  const htmlContent = `<!DOCTYPE html>
+    const htmlContent = `<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -561,7 +561,7 @@ export async function sendCustomerConfirmationEmail(quoteData) {
                     font-size:12px;
                     line-height:20px;
                   font-family:Inter,Arial,Helvetica,sans-serif;" valign="middle">
-                                        A-1, 3rd Floor, FIEE Complex, Okhla Industrial Area, Phase-2, New Delhi, South Delhi, Delhi – 110020, India
+                                        A-1, 3rd Floor, FIEE Complex, Okhla Industrial Area, Phase-2, New Delhi, Delhi – 110020, India
                                     </td>
                                 </tr>
                             </table>
@@ -574,22 +574,22 @@ export async function sendCustomerConfirmationEmail(quoteData) {
 </body>
 </html>`
 
-  try {
-    const transporter = createTransporter()
-    const info = await transporter.sendMail({
-      from: `"XtraCover Corporate" <${fromAddress}>`,
-      to: quoteData.email,
-      bcc: 'ritwik.tiwary@xtracover.com',
-      subject: subject,
-      html: htmlContent,
-      attachments
-    })
+    try {
+        const transporter = createTransporter()
+        const info = await transporter.sendMail({
+            from: `"XtraCover Corporate" <${fromAddress}>`,
+            to: quoteData.email,
+            bcc: 'ritwik.tiwary@xtracover.com',
+            subject: subject,
+            html: htmlContent,
+            attachments
+        })
 
-    console.log(`Customer confirmation email sent successfully to ${quoteData.email} (Message ID: ${info.messageId})`)
-    return { success: true, messageId: info.messageId }
-  } catch (err) {
-    console.error(`Failed to send customer confirmation email to ${quoteData.email}:`, err)
-    return { success: false, error: err.message }
-  }
+        console.log(`Customer confirmation email sent successfully to ${quoteData.email} (Message ID: ${info.messageId})`)
+        return { success: true, messageId: info.messageId }
+    } catch (err) {
+        console.error(`Failed to send customer confirmation email to ${quoteData.email}:`, err)
+        return { success: false, error: err.message }
+    }
 }
 

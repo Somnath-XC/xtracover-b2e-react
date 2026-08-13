@@ -16,22 +16,79 @@ router.post('/', async (req, res) => {
     })
   }
 
+  const trimmedName = name.trim()
+  const trimmedContact = contact.trim()
+  const trimmedEmail = email.trim()
+  const trimmedMessage = message.trim()
+
+  if (trimmedName.length < 2) {
+    return res.status(400).json({
+      success: false,
+      message: 'Name must be at least 2 characters.'
+    })
+  }
+
+  // Validate contact number against Indian mobile number standards
+  if (/[a-zA-Z]/.test(trimmedContact)) {
+    return res.status(400).json({
+      success: false,
+      message: 'Contact number cannot contain letters.'
+    })
+  }
+  const indianMobileRegex = /^(?:\+?91[\s-]?)?[6-9]\d{9}$/
+  if (!indianMobileRegex.test(trimmedContact)) {
+    return res.status(400).json({
+      success: false,
+      message: 'Please enter a valid phone number.'
+    })
+  }
+
+  // Validate email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/
+  if (!emailRegex.test(trimmedEmail)) {
+    return res.status(400).json({
+      success: false,
+      message: 'Please provide a valid email address.'
+    })
+  }
+
   try {
     const pool = await getDbPool()
     const requestId = `REQ-${Math.floor(100000 + Math.random() * 900000)}`
 
-    await pool
-      .request()
-      .input('requestId', mssql.NVarChar, requestId)
-      .input('name', mssql.NVarChar, name.trim())
-      .input('contact', mssql.NVarChar, contact.trim())
-      .input('email', mssql.NVarChar, email.trim())
-      .input('message', mssql.NVarChar, message.trim())
-      .input('status', mssql.NVarChar, 'New Inquiry')
-      .query(`
-        INSERT INTO BusinessQuotes (RequestId, Name, Contact, Email, Message, Status, SubmittedAt)
-        VALUES (@requestId, @name, @contact, @email, @message, @status, GETDATE())
-      `)
+    // Check if column 'Id' in BusinessQuotes is an IDENTITY column
+    const idCheck = await pool.request().query(`
+      SELECT COLUMNPROPERTY(OBJECT_ID('BusinessQuotes'), 'Id', 'IsIdentity') AS isIdentity
+    `)
+    const isIdentity = idCheck.recordset[0]?.isIdentity === 1
+
+    if (isIdentity) {
+      await pool
+        .request()
+        .input('requestId', mssql.NVarChar, requestId)
+        .input('name', mssql.NVarChar, name.trim())
+        .input('contact', mssql.NVarChar, contact.trim())
+        .input('email', mssql.NVarChar, email.trim())
+        .input('message', mssql.NVarChar, message.trim())
+        .input('status', mssql.NVarChar, 'New Inquiry')
+        .query(`
+          INSERT INTO BusinessQuotes (RequestId, Name, Contact, Email, Message, Status, SubmittedAt)
+          VALUES (@requestId, @name, @contact, @email, @message, @status, GETDATE())
+        `)
+    } else {
+      await pool
+        .request()
+        .input('requestId', mssql.NVarChar, requestId)
+        .input('name', mssql.NVarChar, name.trim())
+        .input('contact', mssql.NVarChar, contact.trim())
+        .input('email', mssql.NVarChar, email.trim())
+        .input('message', mssql.NVarChar, message.trim())
+        .input('status', mssql.NVarChar, 'New Inquiry')
+        .query(`
+          INSERT INTO BusinessQuotes (Id, RequestId, Name, Contact, Email, Message, Status, SubmittedAt)
+          VALUES (ISNULL((SELECT MAX(Id) FROM BusinessQuotes), 0) + 1, @requestId, @name, @contact, @email, @message, @status, GETDATE())
+        `)
+    }
 
     const quoteRecord = {
       requestId,
